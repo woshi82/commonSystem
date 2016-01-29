@@ -1,0 +1,282 @@
+<script type="text/javascript">
+    require(['jqtransform','highcharts'], function(){
+        $(function(){
+            $('.task-list').jqTransform(); 
+            $(".tool-full").on("click",function(){
+              var db = $(this).parents('.panel').parent();
+              if(db.hasClass("col-sm-full")){
+                db.removeClass("col-sm-full");
+                db.siblings().show();
+              }
+              else{
+                db.addClass("col-sm-full");
+                db.siblings().hide();
+              }
+              if(db.find("table")){
+                db.find(".home-panel").highcharts().reflow();
+              }
+            });
+            $('#equipment').highcharts({
+                chart: {
+                    type: 'areaspline',
+                    reflow: true
+                },
+                title: {
+                    text: null
+                },
+                xAxis: {
+                    categories: [
+                        'Monday',
+                        'Tuesday',
+                        'Wednesday'
+                    ],
+                    plotBands: [{ // visualize the weekend
+                        from: 4.5,
+                        to: 6.5,
+                        color: 'rgba(68, 170, 213, .2)'
+                    }]
+                },
+                yAxis: {
+                    title: {
+                        text: null
+                    }
+                },
+                tooltip: {
+                    shared: true,
+                    valueSuffix: ' units'
+                },
+                credits: {
+                    enabled: false
+                },
+                plotOptions: {
+                    areaspline: {
+                        fillOpacity: 0.5
+                    }
+                },
+                series: [{
+                    name: 'John',
+                    data: [3, 4, 3]
+                }, {
+                    name: 'Jane',
+                    data: [1, 3, 4]
+                }]
+            });
+        });
+
+    });
+</script>
+<div class="main">
+    <ul class="favorite">
+        <li>
+            <a href="#/index/1">
+                <img src="img/icons1.png" />
+                仪表盘
+            </a>
+        </li>
+        <li>
+            <a href="#/index/2">
+                <img src="img/icons2.png" />
+                表格查询
+            </a>
+        </li>
+        <li>
+            <a href="#/index/3">
+                <img src="img/icons4.png" />
+                表单查询
+            </a>
+        </li>
+    </ul>
+    <div class="row relative">
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">信息统计
+                    <div class="tools">
+                        <a class="tool-full" href="javascript:;" title="全屏显示">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </a>
+                    </div>
+                </div>
+                <div id="equipment" class="home-panel"></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="tools">
+                        <a class="tool-full" href="javascript:;" title="全屏显示">
+                            <span class="glyphicon glyphicon-resize-full"></span>
+                        </a>
+                        <a href="#" title="刷新">
+                            <span class="glyphicon glyphicon glyphicon-refresh"></span>
+                        </a>
+                        <a href="#" title="设置">
+                            <span class="glyphicon glyphicon glyphicon-cog"></span>
+                        </a>
+                        <a href="#" title="删除">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </div>
+                    <span class="caption">待办事项</span>
+                    <span class="badge">42</span>
+                </div>
+                <ul class="list-group task-list home-panel">
+                    <li class="list-group-item">
+                        <label class="pull-right">
+                            <input type="checkbox" />
+                        </label>
+                        <span class="label label-primary">业务</span>
+                        外省用户信息下发监视
+                    </li>
+                    <li class="list-group-item">
+                        <label class="pull-right">
+                            <input type="checkbox" />
+                        </label>
+                        <span class="label label-warning">紧急</span>
+                        跨省记账监视
+                    </li>
+                    <li class="list-group-item">
+                        <label class="pull-right">
+                            <input type="checkbox" />
+                        </label>
+                        <span class="label label-success">流程</span>
+                        收费数据管理
+                    </li>
+                    <li class="list-group-item">
+                        <label class="pull-right">
+                            <input type="checkbox" />
+                        </label>
+                        <span class="label label-danger">严重</span>
+                        黑名单监视
+                    </li>
+                    <li class="list-group-item">
+                        <label class="pull-right">
+                            <input type="checkbox" />
+                        </label>
+                        <span class="label label-info">常规</span>
+                        发行机构通信
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">最新动态</div>
+                <ul class="list-group activity-list home-panel">
+                    <li class="list-group-item">
+                        <small class="time">20分钟前</small> <strong>admin</strong>
+                        登录了系统
+                    </li>
+                    <li class="list-group-item">
+                        <small class="time">20分钟前</small> <strong>admin</strong>
+                        下发了一个
+                        <a href="#">任务</a>
+                    </li>
+                    <li class="list-group-item">
+                        <small class="time">20分钟前</small>
+                        <strong>admin</strong>
+                        将
+                        <a href="#">任务</a>
+                        指派给
+                        <strong>test</strong>
+                    </li>
+                    <li class="list-group-item">
+                        <small class="time">20分钟前</small>
+                        <strong>admin</strong>
+                        退出了系统
+                    </li>
+                    <li class="list-group-item">
+                        <small class="time">2分钟前</small>
+                        <strong>test</strong>
+                        录入了一条数据
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">我的消息</div>
+                <ul class="list-group msg-list home-panel">
+                    <li class="list-group-item media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="img/head.jpg" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Admin</h4>
+                            test test
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="img/head.jpg" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Admin</h4>
+                            test test
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="img/head.jpg" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Admin</h4>
+                            test test
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object" src="img/head.jpg" alt="..."></a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">Admin</h4>
+                            test test
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">设备状态</div>
+                <div class="panel-body home-panel">
+                    <div>
+                        <p class="text-muted medium">
+                            CPU
+                            <span class="pull-right">35%</span>
+                        </p>
+                        <div class="progressbar-xs no-margin progress ng-isolate-scope" value="35" type="success">
+                            <div class="progress-bar progress-bar-success" style="width: 35%;"></div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div>
+                        <p class="text-muted medium">
+                            硬盘
+                            <span class="pull-right">92%</span>
+                        </p>
+                        <div class="progressbar-xs no-margin progress ng-isolate-scope" value="92" type="danger">
+                            <div class="progress-bar progress-bar-danger"  style="width: 92%;"></div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div>
+                        <p class="text-muted medium">
+                            内存
+                            <span class="pull-right">22%</span>
+                        </p>
+                        <div class="progressbar-xs no-margin progress ng-isolate-scope" value="22" type="info">
+                            <div class="progress-bar progress-bar-info"  style="width: 22%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

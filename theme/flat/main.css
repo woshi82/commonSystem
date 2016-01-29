@@ -1,0 +1,48 @@
+
+.login .form-group.focus .inputIcon{ color: #32addb; }
+
+.navbar-inverse .navbar-title{ background-image: url(bg-nav.png); }
+.navbar-inverse .navbar-menu{ background-image: url(bg-navMenu.png); }
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #ccc;
+}
+.navbar-title .navbar-brand,.navbar-title .navbar-nav > li > a{ color: #fff; }
+.navbar-menu .navbar-nav > li > a{ color: #333; }
+.navbar-menu .navbar-nav > li > a.menu-home{ color: #3ca7d8; }
+.nav-sidebar > li > a{
+	background-image: url(bg-sidebar.png);
+	padding: 9px 15px;
+}
+.hide-sidebar .nav-sidebar > li > a {
+  padding: 7px 0;
+  background-image: none;
+}
+.nav.nav-sidebar > li.active > a,
+.nav.nav-sidebar > li.active > a:hover,
+.nav.nav-sidebar > li.active > a:focus {
+	background-image: url(bg-sidebar-active.png);
+}
+.hide-sidebar .nav.nav-sidebar > li.active > a,
+.hide-sidebar .nav.nav-sidebar > li.active > a:hover,
+.hide-sidebar .nav.nav-sidebar > li.active > a:focus {
+  background-image: none;
+}
+
+.nav-sidebar ul{ list-style: none; padding: 10px 0; }
+.nav-sidebar li > a span{ margin-right: 5px; }
+.nav-sidebar li ul li a{ display: block; padding-left:25px; line-height: 30px; font-size: 12px; }
+.nav-sidebar li ul li a:hover,.nav-sidebar li ul li a:active,.nav-sidebar li ul li a:focus{ background-color:#38a3d5; color: #fff; }
+
+/*.panel-heading {
+    padding: 5px 10px;
+    font-size: 12px;
+}*/
+
+.page-header h3{ margin: 0; }
+.page-header span{ position: relative; bottom:-4px; border-bottom: 2px solid #005ead; padding: 2px 8px; font-size: 20px; }
+
+.tabsPage .tabsPageHeader .navTab-tab li.active {
+	border-top-color: #0a85bf;
+}
+
+.footer p .glyphicon{ color: #47baf0; }

@@ -1,0 +1,147 @@
+<script type="text/javascript">
+    require(['jqtransform','highcharts'], function(){
+        $(function(){
+            $('.task-list').jqTransform(); 
+            $(".tool-full").on("click",function(){
+              var db = $(this).parents('.panel').parent();
+              if(db.hasClass("col-sm-full")){
+                db.removeClass("col-sm-full");
+                db.siblings().show();
+              }
+              else{
+                db.addClass("col-sm-full");
+                db.siblings().hide();
+              }
+              if(db.find("table")){
+                db.find(".home-panel").highcharts().reflow();
+              }
+            });
+            $(".btn-group .btn").on("click",function(){
+                if(!$(this).hasClass("btn-primary")){
+                    $(".btn-group .btn.btn-primary").attr("class","btn btn-default");
+                    $(this).attr("class","btn btn-primary");
+                    $(".caption").html($(this).html());
+                }
+            });
+        });
+
+    });
+</script>
+<style>
+    .profile .media{ padding: 10px; }
+    .profile .btn-group.pull-right{ margin-top: -20px; }
+    .roleList li{ float: left; background: #f0f0f0; width: 18%; margin-right: 2%; padding: 5px; border: 1px solid #ccc; }
+    </style>
+<div class="main profile">
+    <div class="">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" src="img/head.jpg"></a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Admin</h4>
+                最近登录：2015-12-31 20:30:00
+                <div class="btn-group pull-right" role="group tablist">
+                    <a href="#base" class="btn btn-primary" aria-controls="base" role="tab" data-toggle="tab">基本信息</a>
+                    <a href="#security" class="btn btn-default" aria-controls="security" role="tab" data-toggle="tab">详细信息</a>
+                    <a href="#role" class="btn btn-default" aria-controls="role" role="tab" data-toggle="tab">所属角色</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="caption">基本信息</span>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content" style="min-height:300px;">
+                    <br>
+                    <div role="tabpanel" class="tab-pane active" id="base">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <span class="text-red">*</span>
+                                    真实姓名：
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <span class="text-red">*</span>
+                                    修改密码：
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" />
+                                </div>
+                                <div class="col-sm-5 help-block">默认为：登录密码</div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    <span class="text-red">*</span>
+                                    确认密码：
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="security">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    工号：
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    所属单位：
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    手机：
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">
+                                    邮箱：
+                                </label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                      <span class="input-group-addon" id="sizing-addon2"><i class="glyphicon glyphicon-envelope"></i></span>
+                                      <input type="email" class="form-control" placeholder="email" aria-describedby="sizing-addon2">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="role">
+                        <ul class="roleList">
+                            <li><i class="glyphicon glyphicon-user"></i>&nbsp;Admin</li>
+                            <li><i class="glyphicon glyphicon-user"></i>&nbsp;Admin</li>
+                            <li><i class="glyphicon glyphicon-user"></i>&nbsp;Admin</li>
+                            <li><i class="glyphicon glyphicon-user"></i>&nbsp;Admin</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-default">重置</button>
+            </div>
+        </div>
+
+    </div>
+</div>

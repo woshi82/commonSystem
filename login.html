@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>登录页</title>
+
+    <link href="lib/bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <link href="theme/default/main.css" rel="stylesheet" id="css_main">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="login">
+    <div class="loginbox">
+        <div class="login-logo">
+            <img src="img/login_logo.png" alt="">
+        </div>
+        <div class="loginbody">
+            <h5>用户登录</h5>
+            <form id="loginForm" class="form-horizontal" method="post">
+                <div id="ur-group" class="form-group">
+                    <div class="col-sm-12 relative">
+                        <span class="glyphicon glyphicon-user inputIcon"></span>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="输入用户名">
+                        <div class="input-group hide">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="输入用户名">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    管理员
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="#">高管局</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">管理管理管理</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pwd-group" class="form-group">
+                    <div class="col-sm-12 relative">
+                        <span class="glyphicon glyphicon-lock inputIcon"></span>
+                        <div class="showPwd"><span class="glyphicon glyphicon-eye-open"></span></div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="输入密码"></div>
+                </div>
+                <div class="form-group hide">
+                    <div class="col-sm-9 relative">
+                        <span class="glyphicon glyphicon-tag inputIcon"></span>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="输入验证码">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">SMXT</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox">
+                            <label>&nbsp;&nbsp;&nbsp;<input type="checkbox">记住密码</label>
+                        </div>
+                    </div>
+                </div>
+                <center id="errorMsg" class="form-group text-danger hidden"></center>
+                <a href="index.html" id="loginBtn" class="btn btn-success btn-lg btn-block">登　录</a>
+            </form>
+        </div>
+        <center class="systemInfo">
+        <p style="color:#9dd9f1;">Copyright © 2012-2016 黑龙江省中心运营平台 - Powered By JeeSite V1.0.1500.0</p>
+        <p style="color:#6ec5e7;">
+            技术支持：广州华工信息软件有限公司 </p> 
+        </center>
+    </div>
+    <script src="lib/jquery/jquery-1.11.3.min.js"></script>
+    <script src="lib/bootstrap3/js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

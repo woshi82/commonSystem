@@ -1,0 +1,592 @@
+
+<script type="text/javascript">
+    require(['dataTablesBootstrap','dataTablesAngular','WdatePicker','jqtransform'], function(){
+        // testModule = angular.module('TestModule', []);
+        // routerApp.requires.push('testModule');
+        // testModule.controller('testConCtl', ['$scope','$stateParams',function($scope,$stateParams) {
+
+        //         console.log('t')
+        //         $scope.t = function(){
+        //             console.log('t')
+        //         }
+        //         // console.log($stateParams.routerType);
+        // }]);
+
+        $(function() {
+            // HASH = window.location.hash;
+            // console.log()
+            $('#changeMain').append($('#subMain').html());
+            $('#changeMain').injector().invoke(function($compile,$rootScope){
+                $compile($('#changeMain').contents())($rootScope);
+            });
+            //计算表格高度
+            var h = $(".tabsPageContent").height() - $(".table-responsive").position().top - 66;
+      
+            $('.form-inline,#table').jqTransform();
+
+            $('#table').DataTable({
+                "searching":     false,
+                "sDom": 'rt<"row"<"col-sm-8 dataTables_inline"li><"col-sm-4"p><"clear">>',
+                "scrollY": h,
+                "scrollX": true,
+                "order": [[ 1, 'asc' ]],
+                "columnDefs": [{ "targets": 0, "orderable": false, "className": "text-center",  "  width": "20px" }],
+                "oLanguage" : {
+                      "sLengthMenu": "显示 _MENU_ 项",
+                      "sZeroRecords": "抱歉， 没有找到",
+                      "sInfo": "共 _TOTAL_ 项",
+                      "sInfoEmpty": "没有数据",
+                      "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                      "sZeroRecords": "没有检索到数据",
+                       "sSearch": "名称:",
+                      "oPaginate": {
+                      "sFirst": "首页",
+                      "sPrevious": "上一页",
+                      "sNext": "下一页",
+                      "sLast": "末页"
+                      }
+                           
+                },
+                "initComplete": function () {
+                  $("#checkAll").on("click",function(){
+                    var checked = "",flag = false;
+                    if(this.checked){ checked = " jqTransformChecked"; flag = true; }
+                    $("#table tbody input[type='checkbox']").each(function(){
+                      $(this).attr("checked",flag);
+                      $(this).prev(".jqTransformCheckbox").attr("class","jqTransformCheckbox" +   checked);
+                    });
+                  });
+                }
+            });
+            $("a[target='pageModal']").on("click",function(){
+                var $this = $(this);
+                var title = $this.attr("title") || $this.text();
+                var rel = $this.attr("rel") || "_blank";
+                var url = $this.attr("href");
+                var options = "";
+                pageModal.openModal(url, rel, title, options);
+                return false;
+            });
+            $("a#del_table").on("click",function(){
+                var item = $("#table tbody input[type='checkbox']:checked");
+                if(item.size() > 0){
+                  item.parents("tr").remove();
+                  $("#checkAll").attr("checked",false)
+                  $("#checkAll").prev().removeClass("jqTransformChecked");
+                }
+                else{ alert("请先选择需要删除的行"); }
+            });
+        });
+    });
+</script>
+<script type="text/tpl" id="subMain">
+    <div class="main" id="main" >
+        <div class="wrapper row">
+            <div class="col-xs-10">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="">姓名：</label>
+                        <input type="text" class="form-control" id="exampleInputEmail3" placeholder="输入姓名" />
+                    </div>
+                    <div class="form-group">
+                        <label for="">车牌：</label>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    粤
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="javascript:;">Action</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Another action</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Something else here</a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="javascript:;">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" placeholder="输入车牌" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">选择时间：</label>
+                        <input type="text" class="form-control Wdate" onClick="WdatePicker()" />
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox">是否外来车</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>车型</label>
+                        <select class="form-control">
+                            <option selected="selected">请选择车型</option>
+                            <option>1</option>
+                            <option>2请选择车型请选择车型</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-2 placeholder">
+                <a type="button" href="#/index/table/edit?id=115" class="btn btn-primary btn-block">搜索</a>
+                <a type="button" ng-click="closepage('table')" class="btn btn-primary btn-block">搜索</a>
+            </div>
+        </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse toolbar-collapse" >
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="javascript:;" target="pageModal" rel="dlg_page10" title="添加">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                添加
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" id="del_table">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                删除
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <span class="glyphicon glyphicon-th"></span>
+                                导出表格
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                <span class="glyphicon glyphicon-print"></span>
+                                打印
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                更多
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                        刷新
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search"></div>
+                        <button type="submit" class="btn btn-default">检索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="javascript:;">Link</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:;">Action</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">Something else here</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="javascript:;">Separated link</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed" id="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" id="checkAll" />
+                        </th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                        <th>Header</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Loremaaaaaaaaaaaaaaaaa</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>amet</td>
+                        <td>consectetur</td>
+                        <td>adipiscing</td>
+                        <td>elit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Integer</td>
+                        <td>nec</td>
+                        <td>odio</td>
+                        <td>Praesent</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>libero</td>
+                        <td>Sed</td>
+                        <td>cursus</td>
+                        <td>ante</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>dapibus</td>
+                        <td>diam</td>
+                        <td>Sed</td>
+                        <td>nisi</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Nulla</td>
+                        <td>quis</td>
+                        <td>sem</td>
+                        <td>at</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>nibh</td>
+                        <td>elementum</td>
+                        <td>imperdiet</td>
+                        <td>Duis</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>sagittis</td>
+                        <td>ipsum</td>
+                        <td>Praesent</td>
+                        <td>mauris</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Fusce</td>
+                        <td>nec</td>
+                        <td>tellus</td>
+                        <td>sed</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>   
+</script>
+
+<!--<script src="js/hgits.navTab.js"></script>
+<script src="js/hgits.pageModal.js"></script> -->

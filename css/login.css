@@ -1,0 +1,24 @@
+a,a:hover,a:focus{ text-decoration: none; outline: none; }
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:active:focus, .btn:focus {
+    outline: none;
+}
+body{ font-family: "微软雅黑", "宋体"; background: url(../img/login_bg_y.png) repeat-x #0c8cc0; }
+.loginbox{ background: url(../img/login_bg1.png) center center no-repeat; height: 540px; margin: 0 auto; padding-top: 80px; }
+.loginbody{ width: 42%; margin: 0 auto 10px; padding: 20px 40px 50px; border-radius: 4px; background-color: #fff; border:1px solid #0c99d1; }
+.loginbody h5{ font-size: 20px; color: #ccc; margin-bottom: 25px; }
+.showPwd{ position: absolute; right: 15px; top:10px; }
+.showPwd span{ font-size: 20px; color: #ccc; cursor: pointer; }
+.showPwd.active span{ color: #32addb; }
+.login-logo{ width: 42%; margin: 60px auto 0; }
+.login-logo img{ width: 64%; border-radius: 10px; }
+.loginbox .form-control{ text-indent: 25px; border-radius: 2px; height: 40px; padding-left: 30px; }
+.loginbox .form-horizontal .form-group{ margin: 0 0 22px; }
+.loginbox .form-horizontal .btn{ border-radius: 2px; }
+input[type="password"]{ padding-right: 50px; }
+.relative{ position: relative; padding: 0; }
+.inputIcon{ position: absolute; left: 1px; top: 1px; z-index: 5; color: #b8b8b8; text-align: center; background-color: #e6e6e6; width: 40px; line-height: 38px; border-right: 1px solid #d6d6d6; }
+.focus .inputIcon{ border-right-color: #48afdc; color: #84bcdf; background-color: #ebf6fd; }
+.systemInfo{ color: #9fdcf4; font-family: "宋体"; font-size: 12px; margin-top: 20px; }
+.input-group-btn .btn { padding: 9px 12px; }
+#loginBtn{ margin-top: 40px; background-color: #86ca35; font-size: 22px; font-weight: 400; }
+#loginBtn:hover{ background-color: #66aa15; }

@@ -1,0 +1,185 @@
+<script type="text/javascript">
+    require(['app','mainModule','dataTablesBootstrap','dataTablesAngular','WdatePicker','jqtransform','jstree'], function(routerApp,mainModule){
+        //初始化页面
+        // mainModule.requires.push('datatables');
+        // routerApp.requires.push('TestModule');
+            // routerApp.$inject.push('TestModule');
+        // var $injector = angular.injector(["mainModule"]);
+        // ng-controller="TestConCtl"
+
+        // var sHtml = '<div ng-controller="TestConCtl" ng-click="t()">3333333333333333333333333333333333333</div>'
+        //     // $('#main').append($(sHtml));
+
+        // var myModule1 = angular.module('myModule', []);
+        // // myModule1.requires.push('routerApp');
+        // var injector = angular.injector(["myModule",'ng']);
+        
+
+        // function TestConCtl($rootScope,$compile){
+        //     $rootScope.a = 22;
+        //     // $compile($('#main').contents())($rootScope);
+
+        //     $rootScope.t = function(){
+        //         console.log('t')
+        //     }
+        // }
+        // TestConCtl.$inject = ['$rootScope','$compile'];
+        // injector.invoke(TestConCtl);
+
+        
+
+        $(function() {
+
+            $("a[target='pageModal']").on("click",function(){
+                var $this = $(this);
+                var title = $this.attr("title") || $this.text();
+                var rel = $this.attr("rel") || "_blank";
+                var url = $this.attr("href");
+                var options = "";
+                pageModal.openModal(url, rel, title, options);
+                return false;
+            });
+            $("a#del_table").on("click",function(){
+                var item = $("#table tbody input[type='checkbox']:checked");
+                if(item.size() > 0){
+                  item.parents("tr").remove();
+                  $("#checkAll").attr("checked",false)
+                  $("#checkAll").prev().removeClass("jqTransformChecked");
+                }
+                else{ alert("请先选择需要删除的行"); }
+            });
+
+        });
+    });
+</script>
+
+<div class="main" >
+    <div class="row relative">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">功能模块</div>
+                <div class="">
+                    <div aria-activedescendant="184" role="tree" id="moduleTree" class="tree-demo jstree jstree-2 jstree-default">
+                        <ul class="jstree-container-ul jstree-children">
+                            <li class="jstree-node  jstree-open jstree-last" id="-1" aria-expanded="true" role="treeitem"> <i class="jstree-icon jstree-ocl"></i>
+                                <a href="#" class="jstree-anchor"> <i class="jstree-icon jstree-themeicon fa fa-folder icon-warning icon-lg jstree-themeicon-custom"></i>
+                                    根目录
+                                </a>
+                                <ul class="jstree-children" role="group">
+                                    <li aria-selected="true" class="jstree-node  jstree-leaf" id="133" role="treeitem">
+                                        <i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#" class="jstree-anchor  jstree-clicked jstree-disabled">
+                                            <i class="jstree-icon jstree-themeicon fa fa-user jstree-themeicon-custom"></i>
+                                            个人中心
+                                        </a>
+                                    </li>
+                                    <li aria-selected="false" class="jstree-node  jstree-open" id="80" aria-expanded="true" role="treeitem">
+                                        <i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#" class="jstree-anchor">
+                                            <i class="jstree-icon jstree-themeicon fa fa-warning jstree-themeicon-custom"></i>
+                                            基础参数
+                                        </a>
+                                        <ul class="jstree-children" role="group">
+                                            <li aria-selected="true" class="jstree-node  jstree-leaf" id="175" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    分中心信息
+                                                </a>
+                                            </li>
+                                            <li aria-selected="true" class="jstree-node  jstree-leaf" id="82" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    路段信息
+                                                </a>
+                                            </li>
+                                            <li aria-selected="false" class="jstree-node  jstree-leaf" id="91" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    收费站信息
+                                                </a>
+                                            </li>
+                                            <li aria-selected="false" class="jstree-node  jstree-leaf jstree-last" id="176" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    车道信息
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="jstree-node  jstree-open" id="179" aria-expanded="true" role="treeitem">
+                                        <i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#" class="jstree-anchor">
+                                            <i class="jstree-icon jstree-themeicon fa fa-users jstree-themeicon-custom"></i>
+                                            组织机构
+                                        </a>
+                                        <ul class="jstree-children" role="group">
+                                            <li aria-selected="true" class="jstree-node  jstree-leaf jstree-last" id="184" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    组织机构
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="jstree-node  jstree-leaf" id="185" role="treeitem">
+                                        <i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#" class="jstree-anchor">
+                                            <i class="jstree-icon jstree-themeicon fa fa-stethoscope jstree-themeicon-custom"></i>
+                                            日志控制台
+                                        </a>
+                                    </li>
+                                    <li class="jstree-node  jstree-open" id="11" aria-expanded="true" role="treeitem">
+                                        <i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#" class="jstree-anchor">
+                                            <i class="jstree-icon jstree-themeicon fa fa-cogs jstree-themeicon-custom"></i>
+                                            系统设置
+                                        </a>
+                                        <ul class="jstree-children" role="group">
+                                            <li class="jstree-node  jstree-leaf" id="14" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    系统用户
+                                                </a>
+                                            </li>
+                                            <li class="jstree-node  jstree-leaf" id="15" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    角色权限
+                                                </a>
+                                            </li>
+                                            <li class="jstree-node  jstree-leaf jstree-last" id="16" role="treeitem">
+                                                <i class="jstree-icon jstree-ocl"></i>
+                                                <a href="#" class="jstree-anchor">
+                                                    <i class="jstree-icon jstree-themeicon fa jstree-themeicon-custom"></i>
+                                                    功能模块
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="jstree-node  jstree-leaf jstree-last" id="178" role="treeitem">
+                                        <i class="jstree-icon jstree-ocl"></i>
+                                        <a href="#" class="jstree-anchor">
+                                            <i class="jstree-icon jstree-themeicon fa fa-heart text-danger jstree-themeicon-custom"></i>
+                                            dsafs
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="js/hgits.navTab.js"></script>
+<script src="js/hgits.pageModal.js"></script>
+-->

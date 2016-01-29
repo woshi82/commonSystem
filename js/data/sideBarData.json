@@ -1,0 +1,53 @@
+[{
+	"title": "基础页面",
+	"type": "default",
+	"subTitle": {
+		"home":{
+			"Zh_name": "首页",
+			"url": "template/home.html"
+		},
+		"dashboard":{
+			"Zh_name": "仪表盘",
+			"url": "template/dashboard.html"
+		},
+		"table":{
+			"Zh_name": "表格查询",
+			"url": "template/table.html",
+			"child": {
+				"edit":{
+					"Zh_name": "表格编辑",
+					"url": "template/table/tableedit.html"
+				} ,
+				"edit2":{
+					"Zh_name": "表格编辑",
+					"url": "template/table/aa/tableedit.html/:id/:username?j"
+				}  
+			}
+		},
+		"edit":{
+			"Zh_name": "表单编辑",
+			"url": "template/edit.html"
+		}
+	}
+},{
+	"title": "系统设置",
+	"type": "default",
+	"subTitle": {
+        "userInfo":{
+	        "Zh_name": "个人中心",
+	        "url": "../user/userInfo"
+        },
+		"userList":{
+			"Zh_name": "用户管理",
+			"url": "../user/userList"
+		},
+		"role":{
+			"Zh_name": "角色管理",
+			"url": "../role/roleList"
+		},
+		"module":{
+			"Zh_name": "功能模块",
+            "url": "../module/list"
+		}
+	}
+}]
